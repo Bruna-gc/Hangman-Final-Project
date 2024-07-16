@@ -1,9 +1,7 @@
 from breezypythongui import EasyFrame
 from tkinter import messagebox
 import tkinter as tk
-
-# var = tk.StringVar()
-# entry = tk.Entry()
+from tkinter import PhotoImage
 
 class Hangman(EasyFrame):
     """class will define the hangman frame"""
@@ -14,13 +12,19 @@ class Hangman(EasyFrame):
         self.mistakes = 0
 
     def setup_GUI(self):
+        #images
+        self.close = PhotoImage(file="images/close.png")
+        self.history = PhotoImage(file="images/button_history.png")
+        self.enter = PhotoImage(file="images/button_enter.png")
         # create list for letters in word
         # I will add a file full of words and use it here later on
         self.list_letters = [i for i in "eye"]
         
         #header panel
         headerPanel = self.addPanel(row=0, column=0, columnspan=3, background="gray")
-        headerPanel.addButton(text="Close", row=0, column=0, command=self.quit)
+        # close button
+        self.close_button =headerPanel.addButton(text="", row=0, column=0, command=self.quit)
+        self.make_button(self.close_button, self.close, color="gray")
         headerPanel.addLabel(text="Title will go here", row=0, column=1, font="Heveltica 20" ,background="gray", sticky='W')
 
         # used words
@@ -30,7 +34,7 @@ class Hangman(EasyFrame):
         #hangman panel
         hangmanPanel = self.addPanel(row=4, column=0, columnspan=3, background="light blue")
         hangmanPanel.addLabel(text="possible hangman will go here", row=0, column=0, sticky='NEWS', background="light blue")
-        self.canvas = tk.Canvas(self, width=200, height=200)
+        self.canvas = tk.Canvas(self, width=200, height=200, background="light blue", borderwidth=0)
         self.canvas.grid(row=4, column=0, columnspan=3)
 
         #word panel
@@ -44,13 +48,17 @@ class Hangman(EasyFrame):
             self.word_dict[key] = value
 
         self.letter_input = self.addTextField(text="", row=8, column=0)
-        # var = tk.StringVar()
-        # self.letter_input= tk.Entry(self, textvariable=var)
-        # self.letter_input.grid(row=8, column=1)
 
-        self.addButton(text="Enter", row=8, column=2, command=self.onSubmit)
-        # tk.Button(self, text="Enter tk", background="pink",highlightbackground="blue", command=self.onSubmit).grid(row=8, column=2)
-        self.addButton(text="History", row=10, column=2, command=self.show_history)
+        #enter button
+        self.enter_button = self.addButton(text="Enter", row=8, column=2, command=self.onSubmit)
+        self.make_button(self.enter_button, self.enter)
+        #history button
+        self.history_button = self.addButton(text="History", row=10, column=2, command=self.show_history)
+        self.make_button(self.history_button, self.history)
+
+    def make_button(self, button, image, color="white"):
+        button["image"] = image
+        button.config(width=image.width(), height=image.height(), borderwidth=0, background=color)
 
     def show_history(self):
         History(self)
@@ -144,6 +152,8 @@ class Hangman(EasyFrame):
         """Will reset the hangman game"""
         self.used_letters["text"] = "Used letters:"
         # clean the hangman panel
+
+        # needs to be finished
         pass
 
 class History(tk.Toplevel):
@@ -152,7 +162,7 @@ class History(tk.Toplevel):
         self.top = super().__init__(master)
         self.title("Game History")
         self.geometry("300x400")
-        tk.Label(self, text="Hello there!").grid(row=0, column=0)
+        tk.Label(self, text="The history of the game will be here!").grid(row=0, column=0)
         tk.Button(self, text="close", command=self.close).grid(row=1, column=0)
 
     def close(self):
