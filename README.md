@@ -15,4 +15,4 @@ The next step is to implement the ideas of all my test files together to build t
 Currently, I am almost finished with the main window and I have to do the history window.
 
 The main interface is as follows:
-<img alt="finalProjectInterface" src="https://github.com/user-attachments/assets/c0ece5e0-cb1e-4611-9aa0-76db80b7d8b4">
+<img alt="finalProjectInterface" width="390" src="https://github.com/user-attachments/assets/c0ece5e0-cb1e-4611-9aa0-76db80b7d8b4">
