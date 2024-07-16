@@ -31,6 +31,7 @@ class Hangman(EasyFrame):
         hangmanPanel = self.addPanel(row=4, column=0, columnspan=3, background="light blue")
         hangmanPanel.addLabel(text="possible hangman will go here", row=0, column=0, sticky='NEWS', background="light blue")
         self.canvas = tk.Canvas(self, width=200, height=200)
+        self.canvas.grid(row=4, column=0, columnspan=3)
 
         #word panel
         wordPanel = self.addPanel(row=6, column=0, background="beige", columnspan=3)
@@ -53,6 +54,35 @@ class Hangman(EasyFrame):
 
     def show_history(self):
         History(self)
+
+    def onSubmit(self):
+        """Define action of button"""
+        letter = self.letter_input.getText().lower()
+
+        if self.exceptions(letter):
+            return
+
+        if self.is_in_word(letter, self.list_letters):
+            self.change_key(letter)
+            print("is in word")
+            if self.check_win():
+                messagebox.showwarning("You win!", "You won the game, Congratulations!")
+        else:
+            self.used_letters["text"] = self.add_to_used_letters(letter)
+            self.mistakes += 1
+            self.draw_hangman()
+        self.letter_input.setText("")
+
+    def exceptions(self, letter):
+        if len(letter) != 1:
+            messagebox.showerror("Invalid letter", "enter a letter")
+            return True
+        if not letter.isalpha():
+            messagebox.showerror("Invalid letter", "The input must be a letter")
+            return True
+        if letter in self.used_letters_list:
+            messagebox.showerror("Invalid letter", "You already chose this letter!")
+            return True
 
     def draw_hangman(self):
         """Draw hangman"""
@@ -86,7 +116,17 @@ class Hangman(EasyFrame):
         if self.mistakes >= 7:
             # Draw the right leg
             self.canvas.create_line(150, 140, 170, 180, width=2)
-        
+    
+    def check_win(self):
+        count = 0
+        for key, value in self.word_dict.items():
+            print(key["text"], value)
+            if key["text"] == value:
+                count += 1
+        if count == len(self.list_letters):
+            return True
+        return False
+
     def is_in_word(self, letter, list):
         return letter in list
 
@@ -105,23 +145,6 @@ class Hangman(EasyFrame):
         self.used_letters["text"] = "Used letters:"
         # clean the hangman panel
         pass
-
-    def onSubmit(self):
-        """Define action of button"""
-        letter = self.letter_input.getText().lower()
-        if len(letter) != 1:
-            messagebox.showerror("Invalid letter", "enter a letter")
-            return
-        if not letter.isalpha():
-            messagebox.showerror("Invalid letter", "The input must be a letter")
-            return
-        
-        if self.is_in_word(letter, self.list_letters):
-            self.change_key(letter)
-            print("is in word")
-        else:
-            self.used_letters["text"] = self.add_to_used_letters(letter)
-        self.letter_input.setText("")
 
 class History(tk.Toplevel):
     """History class as a Toplevel window"""
