@@ -17,6 +17,3 @@ Currently, I am almost finished with the main window and I have to do the histor
 The main interface is as follows:
 
 <br><img alt="finalProjectInterface" width="200" height="auto" src="https://github.com/user-attachments/assets/c0ece5e0-cb1e-4611-9aa0-76db80b7d8b4">
-
-![double_letters](https://github.com/user-attachments/assets/cbd3fa2f-02e8-4076-9b94-60129c220555)
-![double_letters](https://github.com/user-attachments/assets/8c9a9053-48df-427f-81cb-9f3a80a42749)
