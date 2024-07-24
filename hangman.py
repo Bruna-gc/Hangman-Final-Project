@@ -1,36 +1,46 @@
+"""
+
+Author:  Bruna Carreira
+Date written: 02/24/24
+Assignment:   Module8 Final Project .
+Short Desc:   Hangman game with history window
+
+
+"""
 import tkinter as tk
 from breezypythongui import EasyFrame
 from random import choice
 
 class Hangman(EasyFrame):
+    """Hangman class"""
     def __init__(self, word):
         EasyFrame.__init__(self, title="Hangman", width="450", height="600", resizable=False)
-        self.history_window = None
 
-        self.mistakes = 0
-        self.points = 0
+        self.mistakes = 0  # wrong letters
+        self.points = 0    # correct words
 
-        self.used_letters_list = []
-        self.word = word
-        self.list_letters = [i for i in word]  # Replace with word selection logic later
+        self.used_letters_list = [] # list of used letters
+        self.word = word # random word
+        self.list_letters = [i for i in word]  # list with letters in random word
 
         self.load_images()
         self.setup_GUI()
 
     def new_word(self):
-        # get word form list of words
+        """Get new random word form list"""
+
         with open("word_list.txt", "r") as file:
-            list_word = [line.strip() for line in file]
-            word = choice(list_word)
+            list_word = [line.strip() for line in file] # list of words in file 
+            word = choice(list_word) # random word choice
             print(word)
         return word
 
     def load_images(self):
         """Load all the images"""
-        self.close = tk.PhotoImage(file="images/close.png")
-        self.history = tk.PhotoImage(file="images/button_history.png")
-        self.enter = tk.PhotoImage(file="images/button_enter.png")
-        self.reset = tk.PhotoImage(file="images/button_reset.png")
+        self.close = tk.PhotoImage(file="images/close.png") # close button image
+        self.history = tk.PhotoImage(file="images/button_history.png") # history button image
+        self.enter = tk.PhotoImage(file="images/button_enter.png") # enter button image
+        self.reset = tk.PhotoImage(file="images/button_reset.png") # reset button image
 
     def setup_GUI(self):
         """Set up all the GUI"""
@@ -44,25 +54,26 @@ class Hangman(EasyFrame):
 
     def create_header_panel(self):
         """Create the header pannel with close btton and title"""
-        header_panel = self.addPanel(row=0, column=0, columnspan=3, background="gray")
-        self.close_button = header_panel.addButton(text="close", row=0, column=0, command=self.quit)
+        header_panel = self.addPanel(row=0, column=0, columnspan=3, background="gray") # panel for header
+        self.close_button = header_panel.addButton(text="close", row=0, column=0, command=self.quit) # close button
         self.make_button(self.close_button, self.close, color="gray")
-        self.title = header_panel.addLabel(text="Hangman Game", row=0, column=1, font="Helvetica 20", background="gray", sticky='W')
+        self.title = header_panel.addLabel(text="Hangman Game", row=0, column=1, font="Helvetica 20", background="gray", sticky='W') # title of header
 
     def create_used_letters_label(self):
         """Create the label for used letter"""
-        self.used_letters = self.addLabel(text="Used letters", row=2, column=0, columnspan=3, font="Helvetica 10", sticky="NEWS")
+        self.used_letters = self.addLabel(text="Used letters", row=2, column=0, columnspan=3, font="Helvetica 10", sticky="NEWS") # used letters label
 
     def create_hangman_panel(self):
         """Create hangman pannel in the window"""
-        hangman_panel = self.addPanel(row=4, column=0, columnspan=3, background="light blue")
+        hangman_panel = self.addPanel(row=4, column=0, columnspan=3, background="light blue") # panel for hangman canvas
         hangman_panel.addLabel(text="possible hangman will go here", row=0, column=0, sticky='NEWS', background="light blue")
-        self.canvas = tk.Canvas(self, width=200, height=200, background="light blue", borderwidth=0)
+        self.canvas = tk.Canvas(self, width=200, height=200, background="light blue", borderwidth=0) # hangman canvas
         self.canvas.grid(row=4, column=0, columnspan=3)
 
     def create_word_panel(self):
         """Create the word panel in the window"""
-        self.word_panel = self.addPanel(row=6, column=0, background="beige", columnspan=3)
+        self.word_panel = self.addPanel(row=6, column=0, background="beige", columnspan=3) # panel for random word
+        # the following assign a label and a letter as a key, value pair, respectively.
         self.word_dict = {}
         for i, value in enumerate(self.list_letters):
             key = self.word_panel.addLabel(text="_", row=0, column=i, sticky='NWES', font="Helvetica 20", background="beige")
@@ -70,58 +81,60 @@ class Hangman(EasyFrame):
 
     def create_input_area(self):
         """Create the input area in the window"""
-        self.letter_input = self.addTextField(text="", row=8, column=0)
-        # if self.enter_button["state"] == "normal":
-        #     self.letter_input.bind("<Return>", lambda event: self.onSubmit())
+        self.letter_input = self.addTextField(text="", row=8, column=0) # letter guessed by the user
 
 
     def create_buttons_panel(self):
         """Create button area"""
-        self.buttons_panel = self.addPanel(row=8, column=2)
+        self.buttons_panel = self.addPanel(row=8, column=2) # panels for buttons
         self.create_buttons(self.buttons_panel)
 
     def create_buttons(self, buttons_panel):
         """Create the button in the window"""
-        self.enter_button = buttons_panel.addButton(text="Enter", row=0, column=0, command=self.onSubmit)
+        self.enter_button = buttons_panel.addButton(text="Enter", row=0, column=0, command=self.onSubmit) # enter button
         self.make_button(self.enter_button, self.enter)
-        self.history_button = buttons_panel.addButton(text="History", row=0, column=1, command=self.show_history)
+        self.history_button = buttons_panel.addButton(text="History", row=0, column=1, command=self.show_history) # history button
         self.make_button(self.history_button, self.history)
-        self.new_game = buttons_panel.addButton(text="reset", row=0, column=2, command=self.new_game)
+        self.new_game = buttons_panel.addButton(text="reset", row=0, column=2, command=self.new_game) # reset button
         self.make_button(self.new_game, self.reset)
 
     def make_button(self, button, image, color="white"):
         """Makes button with images in GUI"""
+        # the following add an image to the button
         button["image"] = image
         button.config(width=image.width(), height=image.height(), borderwidth=0, background=color)
 
     def show_history(self):
         """Show history window"""
         # self is the master window :) !
-        if self.history_window == None:
-            History(self)
-        else:
-            self.update()
+        History(self)
 
     def onSubmit(self):
-        """Main logic of the game. Check if letter in word when enter button is pressed"""
-        letter = self.letter_input.getText().lower()
+        """Main logic of the game. Check if letter in word when enter button is pressed and add it to to the word label"""
+        letter = self.letter_input.getText().lower() # letter guessed by player in lower case
+        # if there is a exception, the code will return an error as a messagebox
         if self.exceptions(letter):
             return
+        # if letter in word, the letter in be placed in the word label. If the word is complete, one point will be added
         if letter in self.list_letters:
             self.change_key(letter)
             if self.check_win():
+                # changes title to "congratulations!""
                 self.won()
                 self.points += 1
+        # if not in worrd, letter will be added to used letters and one mistake will be added. The hangman will be drawn.
         else:
             self.used_letters["text"] = self.add_to_used_letters(letter)
             self.mistakes += 1
             self.draw_hangman()
             if self.mistakes >= 7:
                 self.lost()
+        # the input field will be cleaned
         self.letter_input.setText("")
 
     def exceptions(self, letter):
         """handles exceptions"""
+        # the following handles empty input, number input and input of a letter already in the used letters list.
         if len(letter) != 1:
             tk.messagebox.showerror("Invalid letter", "enter a letter")
             return True
@@ -217,12 +230,13 @@ class Hangman(EasyFrame):
     
 
 class History(tk.Toplevel):
+    """History window"""
     def __init__(self, master):
         super().__init__(master)
         self.title("Game History")
         self.geometry("200x100")
-        label_points = tk.Label(self, text="Curent Points: " + str(self.master.points))
-        label_mistakes = tk.Label(self, text="\nCurent Mistakes: " + str(self.master.mistakes))
+        label_points = tk.Label(self, text="Curent Points: " + str(self.master.points)) # points label with player's points
+        label_mistakes = tk.Label(self, text="\nCurent Mistakes: " + str(self.master.mistakes)) #  mistake label with player's mistake
 
         label_points.grid(row=0, column=0)
         label_mistakes.grid(row=1, column=0)
@@ -239,6 +253,7 @@ def main():
         list_word = [line.strip() for line in file]
         word = choice(list_word)
         print(word)
+    # initiate Hangman window
     Hangman(word).mainloop()
 
 if __name__ == "__main__":
