@@ -2,7 +2,7 @@
 Words used to check different scenarios:
 pretty – word used to check double word functioning and check the case where the same letter is input more than once.
 
-<br><img alt="double_letters" width="200" height="auto" src="[https://github.com/user-attachments/assets/c0ece5e0-cb1e-4611-9aa0-76db80b7d8b4](https://github.com/user-attachments/assets/9edb9385-709a-4786-a380-fc6b717796f5)">
+<br><img alt="double_letters" width="200" height="auto" src="https://github.com/user-attachments/assets/9edb9385-709a-4786-a380-fc6b717796f5">
 
 ![double_letters](https://github.com/user-attachments/assets/9edb9385-709a-4786-a380-fc6b717796f5)
 Successfully passed the test of double words after change: 
