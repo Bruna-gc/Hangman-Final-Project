@@ -13,4 +13,5 @@ _I changed to key: tkinter label / value: letter_
 Successfully passed the test of raising error after input equal to a letter in the used letters after change: 
 I just added a if-else statement to determine if the letter was already in the list of used words, if so, an error would be raised. 
 
-**Office – word used to check input validation**![equal_input](https://github.com/user-attachments/assets/a3c74c84-d0ef-4f58-b58c-ebe754639971)
+**Office – word used to check input validation**
+<br><img alt="double_letters" width="200" height="auto" src="https://github.com/user-attachments/assets/a3c74c84-d0ef-4f58-b58c-ebe754639971">
