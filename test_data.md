@@ -2,10 +2,10 @@
 **Words used to check different scenarios:**
 **pretty** – word used to check double word functioning and check the case where the same letter is input more than once.
 
-<br><img alt="double_letters" width="200" height="auto" src="https://github.com/user-attachments/assets/9edb9385-709a-4786-a380-fc6b717796f5"> Successfully passed the test of double words after change: 
+<br><img alt="double_letters" width="200" height="auto" src="https://github.com/user-attachments/assets/9edb9385-709a-4786-a380-fc6b717796f5"> <p>Successfully passed the test of double words after change: 
 The problems was the assignments of key/value pair in dictionary.
 Key: letter / value: tkinter label. 
-_I changed to key: tkinter label / value: letter_
+_I changed to key: tkinter label / value: letter_</p>
 
 <br><img alt="double_letters" width="200" height="auto" src="https://github.com/user-attachments/assets/1d8fe182-7093-45e2-bcc4-cb5475789245">
 
