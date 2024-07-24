@@ -12,15 +12,22 @@ Also, for the sake of complete validation, there is also a function to handle ex
 
 ### My game and project contain:
 2 window: Hangman and History window.
+
 5 labels: used letters' label, title label, hangman word label, mistake label, and point label (last twp in the second window).
+
 5 buttons: enter button, history button, close button, reset button, and close button in the history window.
 _because there are 5 buttons, there are also 5 call back functions_
+
 4 images: images in enter, history, reset, and close buttons in the hangman window.
 _all 4 buttons have their own image, for security, however, all buttons have also alternate text if the image does not load _
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ### In my project, I had initials problems with:
 code organization: I had problems implementing a modular approach since there were many things I wanted to add to the project further in the process. In the end, however, I could implement a modular approach breaking down the steps I needed to follow.
+
 changing "_" in the label for a word when there were double letters: I had a little bit of problems changing the "_" to a letter but I figured out how I should solve the problem.
+
 communication Hangman-History: I had trouble setting the communication between both windows since I had to update the mistakes and points. I could update the History window every time you open it again, but not instantly when the point or mistake is made.
 
 The main interface is as follows:
