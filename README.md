@@ -1,19 +1,27 @@
 # Hangman-Final-Project
 
-Final project of Software Development summer class
+## Final project of Software Development - Summer Class
 
-TODO: Create a document of your project, what you have completed, what problems you have, and what is your next step.
+The application for this project is a hangman game with a GUI developed with tkinter and a non-standard library called breezypythongui, I used the class EasyFrame to build some of my interface. 
 
-So far I have completed the terminal base of my Hangman game to have all the basic logic ready to implement in a GUI.
-Also, I have created a simple GUI with basic tkinter modules to explore possibilities.
-I created another file for the game, now with EasyFrame from breezypythongui, in which I connected the logic and the GUI attributes and interface.
+I built two classes, one for each window. The first window is the Hangman game window and contain all the logic for the game itself. The second, however, is the history window, where points and mistakes are stored - The points are all the correctly guessed words, and the mistakes are all the wrong letters guessed.
 
-I had some trouble with the last file to implement the logic and the interface, but I could implement those after some thought. I am currently having some trouble with the "used letters" that I want to display for the hangman game.
+For my game, I used a file with 100 common English words to choose randomly.
 
-The next step is to implement the ideas of all my test files together to build the complete final project.
+Also, for the sake of complete validation, there is also a function to handle exceptions with input from the user
 
-Currently, I am almost finished with the main window and I have to do the history window.
+### My game and project contain:
+2 window: Hangman and History window.
+5 labels: used letters' label, title label, hangman word label, mistake label, and point label (last twp in the second window).
+5 buttons: enter button, history button, close button, reset button, and close button in the history window.
+_because there are 5 buttons, there are also 5 call back functions_
+4 images: images in enter, history, reset, and close buttons in the hangman window.
+_all 4 buttons have their own image, for security, however, all buttons have also alternate text if the image does not load _
+
+### In my project, I had initials problems with:
+code organization: I had problems implementing a modular approach since there were many things I wanted to add to the project further in the process. In the end, however, I could implement a modular approach breaking down the steps I needed to follow.
+changing "_" in the label for a word when there were double letters: I had a little bit of problems changing the "_" to a letter but I figured out how I should solve the problem.
+communication Hangman-History: I had trouble setting the communication between both windows since I had to update the mistakes and points. I could update the History window every time you open it again, but not instantly when the point or mistake is made.
 
 The main interface is as follows:
-
 <br><img alt="finalProjectInterface" width="200" height="auto" src="https://github.com/user-attachments/assets/c0ece5e0-cb1e-4611-9aa0-76db80b7d8b4">
