@@ -4,6 +4,10 @@ So far I have completed the terminal base of my Hangman game to have all the bas
 Also, I have created a simple GUI with basic tkinter modules to explore possibilities.
 I created another file for the game, now with EasyFrame from breezypythongui, in which I connected the logic and the GUI attributes and interface.
 
-I had some trouble with the last file to implement the logic and the  interface, but I could implement those after some thought. I am currently having some trouble with the "used letters" that I want to display for the hangman game. Because there are double letters in words, I need to check if a letter is in the word more than once, so that I can change the text in the label to the respective letter. However, if the letter is not in word and I want to add, for example, the letter to a list, it will add the letter several times, because it will check for that letter in every letter of the current word. To correct this I used a set, instead of a list, because it removes all the duplicates.
+I had some trouble with the last file to implement the logic and the  interface, but I could implement those after some thought. 
+I am currently having some trouble with the "used letters" that I want to display for the hangman game. 
+Because there are double letters in words, I need to check if a letter is in the word more than once, so that I can change the text in the label to the respective letter. 
+However, if the letter is not in word and I want to add, for example, the letter to a list, it will add the letter several times, because it will check for that letter in every letter of the current word. 
+To correct this I used a set, instead of a list, because it removes all the duplicates.
 
 The next step is to implement the ideas of all my test files  together to build the complete final project.
